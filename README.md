@@ -1,0 +1,2 @@
+# infocomm
+Information Communication Ontology
