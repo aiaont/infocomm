@@ -1,30 +1,12 @@
-@prefix : <http://example.org/infocomm#> .
+@prefix : <http://w3id.org/infocomm#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-<http://example.org/infocomm> a owl:Ontology ;
+<http://w3id.org/infocomm> a owl:Ontology ;
     dcterms:description "An ontology for describing information communication."@en ;
     dcterms:title "Information Communication Ontology"@en .
-
-:AliceInvitesBobToBirthdayParty a :CommunicationEvent,
-        owl:NamedIndividual ;
-    :hasFormat :PlainText ;
-    :hasMedium :RadioWaves ;
-    :hasRecipient :Bob ;
-    :hasSender :Alice ;
-    :isGovernedBy :SMSProtocol ;
-    :transmits :BirthdayInvitationMessage .
-
-:WeatherUpdateEvent a :CommunicationEvent,
-        owl:NamedIndividual ;
-    :hasFormat :HTML ;
-    :hasMedium :FibreOpticCable ;
-    :hasRecipient :Subscriber7845 ;
-    :hasSender :WeatherStationService ;
-    :isGovernedBy :HTTP ;
-    :transmits :WeatherForecastUpdate .
 
 :hasFormat a owl:FunctionalProperty,
         owl:ObjectProperty ;
@@ -49,42 +31,6 @@
         owl:ObjectProperty ;
     rdfs:domain :CommunicationEvent ;
     rdfs:range :Information .
-
-:Alice a :CommunicationParty,
-        owl:NamedIndividual .
-
-:BirthdayInvitationMessage a :Information,
-        owl:NamedIndividual .
-
-:Bob a :CommunicationParty,
-        owl:NamedIndividual .
-
-:FibreOpticCable a :Medium,
-        owl:NamedIndividual .
-
-:HTML a :Format,
-        owl:NamedIndividual .
-
-:HTTP a :Protocol,
-        owl:NamedIndividual .
-
-:PlainText a :Format,
-        owl:NamedIndividual .
-
-:RadioWaves a :Medium,
-        owl:NamedIndividual .
-
-:SMSProtocol a :Protocol,
-        owl:NamedIndividual .
-
-:Subscriber7845 a :CommunicationParty,
-        owl:NamedIndividual .
-
-:WeatherForecastUpdate a :Information,
-        owl:NamedIndividual .
-
-:WeatherStationService a :CommunicationParty,
-        owl:NamedIndividual .
 
 :governs a owl:FunctionalProperty,
         owl:ObjectProperty ;
