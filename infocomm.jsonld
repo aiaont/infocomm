@@ -1,0 +1,437 @@
+[
+  {
+    "@id": "http://example.org/infocomm#CommunicationEvent",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "The transport of information through space and/or time."
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/infocomm#PlainText",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/infocomm#Format"
+    ]
+  },
+  {
+    "@id": "http://example.org/infocomm#isGovernedBy",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2002/07/owl#inverseOf": [
+      {
+        "@id": "http://example.org/infocomm#governs"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/infocomm#Subscriber7845",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/infocomm#CommunicationParty"
+    ]
+  },
+  {
+    "@id": "http://example.org/infocomm#transmits",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "http://www.w3.org/2002/07/owl#FunctionalProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/infocomm#CommunicationEvent"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://example.org/infocomm#Information"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/infocomm#senderOf",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2002/07/owl#inverseOf": [
+      {
+        "@id": "http://example.org/infocomm#hasSender"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/infocomm#WeatherUpdateEvent",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/infocomm#CommunicationEvent"
+    ],
+    "http://example.org/infocomm#hasFormat": [
+      {
+        "@id": "http://example.org/infocomm#HTML"
+      }
+    ],
+    "http://example.org/infocomm#hasMedium": [
+      {
+        "@id": "http://example.org/infocomm#FibreOpticCable"
+      }
+    ],
+    "http://example.org/infocomm#hasRecipient": [
+      {
+        "@id": "http://example.org/infocomm#Subscriber7845"
+      }
+    ],
+    "http://example.org/infocomm#hasSender": [
+      {
+        "@id": "http://example.org/infocomm#WeatherStationService"
+      }
+    ],
+    "http://example.org/infocomm#isGovernedBy": [
+      {
+        "@id": "http://example.org/infocomm#HTTP"
+      }
+    ],
+    "http://example.org/infocomm#transmits": [
+      {
+        "@id": "http://example.org/infocomm#WeatherForecastUpdate"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/infocomm#hasFormat",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "http://www.w3.org/2002/07/owl#FunctionalProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/infocomm#CommunicationEvent"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://example.org/infocomm#Format"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/infocomm#hasMedium",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "http://www.w3.org/2002/07/owl#FunctionalProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/infocomm#CommunicationEvent"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://example.org/infocomm#Medium"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/infocomm#Alice",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/infocomm#CommunicationParty"
+    ]
+  },
+  {
+    "@id": "http://example.org/infocomm#hasSender",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "http://www.w3.org/2002/07/owl#FunctionalProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "A communication party fulfils the 'sender' role if they transmit the communicated information."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/infocomm#CommunicationEvent"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://example.org/infocomm#CommunicationParty"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/infocomm#HTTP",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/infocomm#Protocol"
+    ]
+  },
+  {
+    "@id": "http://example.org/infocomm#recipientOf",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2002/07/owl#inverseOf": [
+      {
+        "@id": "http://example.org/infocomm#hasRecipient"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/infocomm",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Ontology"
+    ],
+    "http://purl.org/dc/terms/description": [
+      {
+        "@language": "en",
+        "@value": "An ontology for describing information communication."
+      }
+    ],
+    "http://purl.org/dc/terms/title": [
+      {
+        "@language": "en",
+        "@value": "Information Communication Ontology"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/infocomm#WeatherForecastUpdate",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/infocomm#Information"
+    ]
+  },
+  {
+    "@id": "http://example.org/infocomm#Bob",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/infocomm#CommunicationParty"
+    ]
+  },
+  {
+    "@id": "http://example.org/infocomm#BirthdayInvitationMessage",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/infocomm#Information"
+    ]
+  },
+  {
+    "@id": "http://example.org/infocomm#WeatherStationService",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/infocomm#CommunicationParty"
+    ]
+  },
+  {
+    "@id": "http://example.org/infocomm#Information",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "That which is communicated."
+      },
+      {
+        "@value": "Examples include - but are not limited to - ideas, knowledge, facts, claims, feelings and plans."
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/infocomm#governs",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "http://www.w3.org/2002/07/owl#FunctionalProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/infocomm#Protocol"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://example.org/infocomm#CommunicationEvent"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/infocomm#RadioWaves",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/infocomm#Medium"
+    ]
+  },
+  {
+    "@id": "http://example.org/infocomm#FibreOpticCable",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/infocomm#Medium"
+    ]
+  },
+  {
+    "@id": "http://example.org/infocomm#hasRecipient",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "http://www.w3.org/2002/07/owl#FunctionalProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "A communication party fulfils the 'recipient' role if they receive the communicated information."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/infocomm#CommunicationEvent"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://example.org/infocomm#CommunicationParty"
+      }
+    ]
+  },
+  {
+    "@id": "_:Ncadde685086b40a8bc2b4bc6719ed0b1",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#AllDisjointClasses"
+    ],
+    "http://www.w3.org/2002/07/owl#members": [
+      {
+        "@list": [
+          {
+            "@id": "http://example.org/infocomm#CommunicationEvent"
+          },
+          {
+            "@id": "http://example.org/infocomm#Information"
+          },
+          {
+            "@id": "http://example.org/infocomm#CommunicationParty"
+          },
+          {
+            "@id": "http://example.org/infocomm#Medium"
+          },
+          {
+            "@id": "http://example.org/infocomm#Format"
+          },
+          {
+            "@id": "http://example.org/infocomm#Protocol"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/infocomm#Medium",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "A thing that is altered, either temporarily or permanently, to preserve information during a communication event."
+      },
+      {
+        "@value": "Radio waves (in wireless communication) and coaxial cables (in wired communication) are good examples."
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/infocomm#CommunicationParty",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "An entity that participates in the communication event."
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/infocomm#Format",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "The way in which a thing is altered to act as a medium during a communication event."
+      },
+      {
+        "@value": "Formats include things like JSON, CSV and PDF, but also things like UTF-8 or base64 encoding."
+      },
+      {
+        "@value": "An encoding system (in computer terms) is an example of a format."
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/infocomm#SMSProtocol",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/infocomm#Protocol"
+    ]
+  },
+  {
+    "@id": "http://example.org/infocomm#HTML",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/infocomm#Format"
+    ]
+  },
+  {
+    "@id": "http://example.org/infocomm#AliceInvitesBobToBirthdayParty",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/infocomm#CommunicationEvent"
+    ],
+    "http://example.org/infocomm#hasFormat": [
+      {
+        "@id": "http://example.org/infocomm#PlainText"
+      }
+    ],
+    "http://example.org/infocomm#hasMedium": [
+      {
+        "@id": "http://example.org/infocomm#RadioWaves"
+      }
+    ],
+    "http://example.org/infocomm#hasRecipient": [
+      {
+        "@id": "http://example.org/infocomm#Bob"
+      }
+    ],
+    "http://example.org/infocomm#hasSender": [
+      {
+        "@id": "http://example.org/infocomm#Alice"
+      }
+    ],
+    "http://example.org/infocomm#isGovernedBy": [
+      {
+        "@id": "http://example.org/infocomm#SMSProtocol"
+      }
+    ],
+    "http://example.org/infocomm#transmits": [
+      {
+        "@id": "http://example.org/infocomm#BirthdayInvitationMessage"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/infocomm#Protocol",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "A set of rules governing a communication event."
+      },
+      {
+        "@value": "Bluetooth, SMS, TCP/IP are all examples of communication protocols."
+      },
+      {
+        "@value": "A language may be regarded as a protocol in itself."
+      }
+    ]
+  }
+]
