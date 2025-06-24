@@ -1,0 +1,25 @@
+RewriteEngine On
+
+# HTML
+RewriteCond %{HTTP_ACCEPT} text/html [OR]
+RewriteCond %{HTTP_ACCEPT} application/xhtml\+xml [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Mozilla/.*
+RewriteRule ^(index\.html)?$ https://aiaont.github.io/aiao/aiao.html [R=303,L]
+
+# JSON-LD
+RewriteCond %{HTTP_ACCEPT} application/json [OR]
+RewriteCond %{HTTP_ACCEPT} application/ld\+json
+RewriteRule ^(index\.html)?$ https://cdn.jsdelivr.net/gh/aiaont/aiao@cjp2/aiao.jsonld [R=303,L]
+
+# Turtle
+RewriteCond %{HTTP_ACCEPT} text/turtle
+RewriteRule ^(index\.html)?$ https://cdn.jsdelivr.net/gh/aiaont/aiao@cjp2/aiao.ttl [R=303,L]
+
+# RDF/XML
+RewriteCond %{HTTP_ACCEPT} \*/\* [OR]
+RewriteCond %{HTTP_ACCEPT} application/rdf\+xml
+RewriteRule ^(index\.html)?$ https://cdn.jsdelivr.net/gh/aiaont/aiao@main/aiao.owl [R=303,L]
+
+# Fallback
+RewriteRule ^(index\.html)?$ https://cdn.jsdelivr.net/gh/aiaont/aiao@main/aiao.owl [R=303,L]
+
