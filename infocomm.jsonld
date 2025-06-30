@@ -1,137 +1,29 @@
 [
   {
-    "@id": "http://w3id.org/infocomm#governs",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty",
-      "http://www.w3.org/2002/07/owl#FunctionalProperty"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#domain": [
-      {
-        "@id": "http://w3id.org/infocomm#Protocol"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#range": [
-      {
-        "@id": "http://w3id.org/infocomm#CommunicationEvent"
-      }
-    ]
-  },
-  {
-    "@id": "http://w3id.org/infocomm#isGovernedBy",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty"
-    ],
-    "http://www.w3.org/2002/07/owl#inverseOf": [
-      {
-        "@id": "http://w3id.org/infocomm#governs"
-      }
-    ]
-  },
-  {
-    "@id": "http://w3id.org/infocomm#recipientOf",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty"
-    ],
-    "http://www.w3.org/2002/07/owl#inverseOf": [
-      {
-        "@id": "http://w3id.org/infocomm#hasRecipient"
-      }
-    ]
-  },
-  {
-    "@id": "http://w3id.org/infocomm#Medium",
+    "@id": "http://w3id.org/infocomm#Format",
     "@type": [
       "http://www.w3.org/2002/07/owl#Class"
     ],
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
-        "@value": "A thing that is altered, either temporarily or permanently, to preserve information during a communication event."
+        "@value": "The way in which a thing is altered to act as a medium during a communication event."
       },
       {
-        "@value": "Radio waves (in wireless communication) and coaxial cables (in wired communication) are good examples."
+        "@value": "Formats include things like JSON, CSV and PDF, but also things like UTF-8 or base64 encoding."
+      },
+      {
+        "@value": "An encoding system (in computer terms) is an example of a format."
       }
     ]
   },
   {
-    "@id": "http://w3id.org/infocomm#CommunicationParty",
+    "@id": "http://w3id.org/infocomm#CommunicationEvent",
     "@type": [
       "http://www.w3.org/2002/07/owl#Class"
     ],
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
-        "@value": "An entity that participates in the communication event."
-      }
-    ]
-  },
-  {
-    "@id": "http://w3id.org/infocomm#hasSender",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty",
-      "http://www.w3.org/2002/07/owl#FunctionalProperty"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#comment": [
-      {
-        "@value": "A communication party fulfils the 'sender' role if they transmit the communicated information."
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#domain": [
-      {
-        "@id": "http://w3id.org/infocomm#CommunicationEvent"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#range": [
-      {
-        "@id": "http://w3id.org/infocomm#CommunicationParty"
-      }
-    ]
-  },
-  {
-    "@id": "http://w3id.org/infocomm#hasMedium",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty",
-      "http://www.w3.org/2002/07/owl#FunctionalProperty"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#domain": [
-      {
-        "@id": "http://w3id.org/infocomm#CommunicationEvent"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#range": [
-      {
-        "@id": "http://w3id.org/infocomm#Medium"
-      }
-    ]
-  },
-  {
-    "@id": "http://w3id.org/infocomm#hasRecipient",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty",
-      "http://www.w3.org/2002/07/owl#FunctionalProperty"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#comment": [
-      {
-        "@value": "A communication party fulfils the 'recipient' role if they receive the communicated information."
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#domain": [
-      {
-        "@id": "http://w3id.org/infocomm#CommunicationEvent"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#range": [
-      {
-        "@id": "http://w3id.org/infocomm#CommunicationParty"
-      }
-    ]
-  },
-  {
-    "@id": "http://w3id.org/infocomm#senderOf",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty"
-    ],
-    "http://www.w3.org/2002/07/owl#inverseOf": [
-      {
-        "@id": "http://w3id.org/infocomm#hasSender"
+        "@value": "The transport of information through space and/or time."
       }
     ]
   },
@@ -171,18 +63,60 @@
     ]
   },
   {
-    "@id": "http://w3id.org/infocomm#CommunicationEvent",
+    "@id": "http://w3id.org/infocomm#Protocol",
     "@type": [
       "http://www.w3.org/2002/07/owl#Class"
     ],
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
-        "@value": "The transport of information through space and/or time."
+        "@value": "A set of rules governing a communication event."
+      },
+      {
+        "@value": "Bluetooth, SMS, TCP/IP are all examples of communication protocols."
+      },
+      {
+        "@value": "A language may be regarded as a protocol in itself."
       }
     ]
   },
   {
-    "@id": "_:N9588f7d723a04d8db05d5c36773b937b",
+    "@id": "http://w3id.org/infocomm#senderOf",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2002/07/owl#inverseOf": [
+      {
+        "@id": "http://w3id.org/infocomm#hasSender"
+      }
+    ]
+  },
+  {
+    "@id": "http://w3id.org/infocomm#Medium",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "A thing that is altered, either temporarily or permanently, to preserve information during a communication event."
+      },
+      {
+        "@value": "Radio waves (in wireless communication) and coaxial cables (in wired communication) are good examples."
+      }
+    ]
+  },
+  {
+    "@id": "http://w3id.org/infocomm#CommunicationParty",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "An entity that participates in the communication event."
+      }
+    ]
+  },
+  {
+    "@id": "_:Na49c342617004ab09fc57510daba6ef9",
     "@type": [
       "http://www.w3.org/2002/07/owl#AllDisjointClasses"
     ],
@@ -212,36 +146,35 @@
     ]
   },
   {
-    "@id": "http://w3id.org/infocomm#Protocol",
+    "@id": "http://w3id.org/infocomm#hasRecipient",
     "@type": [
-      "http://www.w3.org/2002/07/owl#Class"
+      "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "http://www.w3.org/2002/07/owl#FunctionalProperty"
     ],
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
-        "@value": "A set of rules governing a communication event."
-      },
+        "@value": "A communication party fulfils the 'recipient' role if they receive the communicated information."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
       {
-        "@value": "Bluetooth, SMS, TCP/IP are all examples of communication protocols."
-      },
+        "@id": "http://w3id.org/infocomm#CommunicationEvent"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@value": "A language may be regarded as a protocol in itself."
+        "@id": "http://w3id.org/infocomm#CommunicationParty"
       }
     ]
   },
   {
-    "@id": "http://w3id.org/infocomm#Format",
+    "@id": "http://w3id.org/infocomm#isGovernedBy",
     "@type": [
-      "http://www.w3.org/2002/07/owl#Class"
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
     ],
-    "http://www.w3.org/2000/01/rdf-schema#comment": [
+    "http://www.w3.org/2002/07/owl#inverseOf": [
       {
-        "@value": "The way in which a thing is altered to act as a medium during a communication event."
-      },
-      {
-        "@value": "Formats include things like JSON, CSV and PDF, but also things like UTF-8 or base64 encoding."
-      },
-      {
-        "@value": "An encoding system (in computer terms) is an example of a format."
+        "@id": "http://w3id.org/infocomm#governs"
       }
     ]
   },
@@ -260,6 +193,51 @@
     ]
   },
   {
+    "@id": "http://w3id.org/infocomm#recipientOf",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2002/07/owl#inverseOf": [
+      {
+        "@id": "http://w3id.org/infocomm#hasRecipient"
+      }
+    ]
+  },
+  {
+    "@id": "http://w3id.org/infocomm#governs",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "http://www.w3.org/2002/07/owl#FunctionalProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://w3id.org/infocomm#Protocol"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://w3id.org/infocomm#CommunicationEvent"
+      }
+    ]
+  },
+  {
+    "@id": "http://w3id.org/infocomm#hasMedium",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "http://www.w3.org/2002/07/owl#FunctionalProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://w3id.org/infocomm#CommunicationEvent"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://w3id.org/infocomm#Medium"
+      }
+    ]
+  },
+  {
     "@id": "http://w3id.org/infocomm#hasFormat",
     "@type": [
       "http://www.w3.org/2002/07/owl#ObjectProperty",
@@ -273,6 +251,28 @@
     "http://www.w3.org/2000/01/rdf-schema#range": [
       {
         "@id": "http://w3id.org/infocomm#Format"
+      }
+    ]
+  },
+  {
+    "@id": "http://w3id.org/infocomm#hasSender",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "http://www.w3.org/2002/07/owl#FunctionalProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "A communication party fulfils the 'sender' role if they transmit the communicated information."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://w3id.org/infocomm#CommunicationEvent"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://w3id.org/infocomm#CommunicationParty"
       }
     ]
   }
