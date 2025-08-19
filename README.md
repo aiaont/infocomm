@@ -4,11 +4,11 @@ Information Communication Ontology
 
 ## Overview
 
-The Information Communication Ontology (infocomm) is an OWL 2 ontology that provides a formal model for describing information communication events. It captures the essential components and relationships involved in any communication process, from simple text messages to complex data transmissions.
+The Information Communication Ontology (infocomm) is an OWL 2 ontology that provides a foundational semantic framework for describing information communication events. It captures the essential components and relationships involved in any communication process, from simple text messages to complex data transmissions.
 
 **Namespace**: `http://w3id.org/infocomm#`
 
-## Main Classes
+## Classes
 
 ### Core Classes
 
@@ -22,13 +22,13 @@ Represents that which is communicated. This includes ideas, knowledge, facts, cl
 
 #### `CommunicationParty`
 
-An entity that participates in the communication event, either as a sender or recipient. This can represent people, organizations, devices, or software systems.
+An entity that participates in the communication event, either as a sender or recipient. This can represent people, organisations, devices, or software systems.
 
 ### Technical Classes
 
 #### `Medium`
 
-A physical or virtual entity that is altered (temporarily or permanently) to preserve information during communication. Examples include:
+A physical or virtual entity that is altered (either temporarily or permanently) to preserve information during communication. Examples include:
 
 - Radio waves (wireless communication)
 - Coaxial cables (wired communication)
@@ -121,10 +121,3 @@ This ontology can be used for:
 - Digital forensics and communication analysis
 - Semantic interoperability in communication systems
 
-## License
-
-[Add your license information here]
-
-## Citation
-
-[Add citation information here]
