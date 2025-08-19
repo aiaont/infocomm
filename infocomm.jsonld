@@ -1,5 +1,75 @@
 [
   {
+    "@id": "http://w3id.org/infocomm#hasMedium",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://w3id.org/infocomm#CommunicationEvent"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://w3id.org/infocomm#Medium"
+      }
+    ]
+  },
+  {
+    "@id": "http://w3id.org/infocomm#CommunicationEvent",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "The transport of information through space and/or time."
+      }
+    ]
+  },
+  {
+    "@id": "http://w3id.org/infocomm#Protocol",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "A set of rules governing a communication event."
+      },
+      {
+        "@value": "Bluetooth, SMS, TCP/IP are all examples of communication protocols."
+      },
+      {
+        "@value": "A language (e.g., English or Spanish) may be regarded as a protocol in itself."
+      }
+    ]
+  },
+  {
+    "@id": "http://w3id.org/infocomm#hasRecipient",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "A communication party fulfils the 'recipient' role if they receive the communicated information."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://w3id.org/infocomm#CommunicationEvent"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://w3id.org/infocomm#CommunicationParty"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#inverseOf": [
+      {
+        "@id": "http://w3id.org/infocomm#recipientOf"
+      }
+    ]
+  },
+  {
     "@id": "http://w3id.org/infocomm#Format",
     "@type": [
       "http://www.w3.org/2002/07/owl#Class"
@@ -17,39 +87,23 @@
     ]
   },
   {
-    "@id": "http://w3id.org/infocomm#CommunicationEvent",
+    "@id": "http://w3id.org/infocomm#Information",
     "@type": [
       "http://www.w3.org/2002/07/owl#Class"
     ],
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
-        "@value": "The transport of information through space and/or time."
+        "@value": "That which is communicated."
+      },
+      {
+        "@value": "Examples include, but are not limited to, ideas, knowledge, facts, claims, feelings and plans."
       }
     ]
   },
   {
-    "@id": "http://w3id.org/infocomm",
+    "@id": "http://w3id.org/infocomm#hasFormat",
     "@type": [
-      "http://www.w3.org/2002/07/owl#Ontology"
-    ],
-    "http://purl.org/dc/terms/description": [
-      {
-        "@language": "en",
-        "@value": "An ontology for describing information communication."
-      }
-    ],
-    "http://purl.org/dc/terms/title": [
-      {
-        "@language": "en",
-        "@value": "Information Communication Ontology"
-      }
-    ]
-  },
-  {
-    "@id": "http://w3id.org/infocomm#transmits",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty",
-      "http://www.w3.org/2002/07/owl#FunctionalProperty"
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
     ],
     "http://www.w3.org/2000/01/rdf-schema#domain": [
       {
@@ -58,35 +112,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@id": "http://w3id.org/infocomm#Information"
-      }
-    ]
-  },
-  {
-    "@id": "http://w3id.org/infocomm#Protocol",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#Class"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#comment": [
-      {
-        "@value": "A set of rules governing a communication event."
-      },
-      {
-        "@value": "Bluetooth, SMS, TCP/IP are all examples of communication protocols."
-      },
-      {
-        "@value": "A language may be regarded as a protocol in itself."
-      }
-    ]
-  },
-  {
-    "@id": "http://w3id.org/infocomm#senderOf",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty"
-    ],
-    "http://www.w3.org/2002/07/owl#inverseOf": [
-      {
-        "@id": "http://w3id.org/infocomm#hasSender"
+        "@id": "http://w3id.org/infocomm#Format"
       }
     ]
   },
@@ -105,18 +131,7 @@
     ]
   },
   {
-    "@id": "http://w3id.org/infocomm#CommunicationParty",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#Class"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#comment": [
-      {
-        "@value": "An entity that participates in the communication event."
-      }
-    ]
-  },
-  {
-    "@id": "_:Na49c342617004ab09fc57510daba6ef9",
+    "@id": "_:N47567d8880644a32944bc1b56e5a0eb3",
     "@type": [
       "http://www.w3.org/2002/07/owl#AllDisjointClasses"
     ],
@@ -146,86 +161,10 @@
     ]
   },
   {
-    "@id": "http://w3id.org/infocomm#hasRecipient",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty",
-      "http://www.w3.org/2002/07/owl#FunctionalProperty"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#comment": [
-      {
-        "@value": "A communication party fulfils the 'recipient' role if they receive the communicated information."
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#domain": [
-      {
-        "@id": "http://w3id.org/infocomm#CommunicationEvent"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#range": [
-      {
-        "@id": "http://w3id.org/infocomm#CommunicationParty"
-      }
-    ]
-  },
-  {
-    "@id": "http://w3id.org/infocomm#isGovernedBy",
+    "@id": "http://w3id.org/infocomm#transmits",
     "@type": [
       "http://www.w3.org/2002/07/owl#ObjectProperty"
     ],
-    "http://www.w3.org/2002/07/owl#inverseOf": [
-      {
-        "@id": "http://w3id.org/infocomm#governs"
-      }
-    ]
-  },
-  {
-    "@id": "http://w3id.org/infocomm#Information",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#Class"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#comment": [
-      {
-        "@value": "That which is communicated."
-      },
-      {
-        "@value": "Examples include - but are not limited to - ideas, knowledge, facts, claims, feelings and plans."
-      }
-    ]
-  },
-  {
-    "@id": "http://w3id.org/infocomm#recipientOf",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty"
-    ],
-    "http://www.w3.org/2002/07/owl#inverseOf": [
-      {
-        "@id": "http://w3id.org/infocomm#hasRecipient"
-      }
-    ]
-  },
-  {
-    "@id": "http://w3id.org/infocomm#governs",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty",
-      "http://www.w3.org/2002/07/owl#FunctionalProperty"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#domain": [
-      {
-        "@id": "http://w3id.org/infocomm#Protocol"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#range": [
-      {
-        "@id": "http://w3id.org/infocomm#CommunicationEvent"
-      }
-    ]
-  },
-  {
-    "@id": "http://w3id.org/infocomm#hasMedium",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty",
-      "http://www.w3.org/2002/07/owl#FunctionalProperty"
-    ],
     "http://www.w3.org/2000/01/rdf-schema#domain": [
       {
         "@id": "http://w3id.org/infocomm#CommunicationEvent"
@@ -233,32 +172,32 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@id": "http://w3id.org/infocomm#Medium"
+        "@id": "http://w3id.org/infocomm#Information"
       }
     ]
   },
   {
-    "@id": "http://w3id.org/infocomm#hasFormat",
+    "@id": "http://w3id.org/infocomm",
     "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty",
-      "http://www.w3.org/2002/07/owl#FunctionalProperty"
+      "http://www.w3.org/2002/07/owl#Ontology"
     ],
-    "http://www.w3.org/2000/01/rdf-schema#domain": [
+    "http://purl.org/dc/terms/description": [
       {
-        "@id": "http://w3id.org/infocomm#CommunicationEvent"
+        "@language": "en",
+        "@value": "An ontology for describing information communication."
       }
     ],
-    "http://www.w3.org/2000/01/rdf-schema#range": [
+    "http://purl.org/dc/terms/title": [
       {
-        "@id": "http://w3id.org/infocomm#Format"
+        "@language": "en",
+        "@value": "Information Communication Ontology"
       }
     ]
   },
   {
     "@id": "http://w3id.org/infocomm#hasSender",
     "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty",
-      "http://www.w3.org/2002/07/owl#FunctionalProperty"
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
     ],
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
@@ -273,6 +212,43 @@
     "http://www.w3.org/2000/01/rdf-schema#range": [
       {
         "@id": "http://w3id.org/infocomm#CommunicationParty"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#inverseOf": [
+      {
+        "@id": "http://w3id.org/infocomm#senderOf"
+      }
+    ]
+  },
+  {
+    "@id": "http://w3id.org/infocomm#governs",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://w3id.org/infocomm#Protocol"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://w3id.org/infocomm#CommunicationEvent"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#inverseOf": [
+      {
+        "@id": "http://w3id.org/infocomm#isGovernedBy"
+      }
+    ]
+  },
+  {
+    "@id": "http://w3id.org/infocomm#CommunicationParty",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "An entity that participates in a communication event."
       }
     ]
   }

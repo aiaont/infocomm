@@ -8,46 +8,34 @@
     dcterms:description "An ontology for describing information communication."@en ;
     dcterms:title "Information Communication Ontology"@en .
 
-:hasFormat a owl:FunctionalProperty,
-        owl:ObjectProperty ;
+:governs a owl:ObjectProperty ;
+    rdfs:domain :Protocol ;
+    rdfs:range :CommunicationEvent ;
+    owl:inverseOf :isGovernedBy .
+
+:hasFormat a owl:ObjectProperty ;
     rdfs:domain :CommunicationEvent ;
     rdfs:range :Format .
 
-:hasMedium a owl:FunctionalProperty,
-        owl:ObjectProperty ;
+:hasMedium a owl:ObjectProperty ;
     rdfs:domain :CommunicationEvent ;
     rdfs:range :Medium .
 
-:isGovernedBy a owl:ObjectProperty ;
-    owl:inverseOf :governs .
-
-:recipientOf a owl:ObjectProperty ;
-    owl:inverseOf :hasRecipient .
-
-:senderOf a owl:ObjectProperty ;
-    owl:inverseOf :hasSender .
-
-:transmits a owl:FunctionalProperty,
-        owl:ObjectProperty ;
-    rdfs:domain :CommunicationEvent ;
-    rdfs:range :Information .
-
-:governs a owl:FunctionalProperty,
-        owl:ObjectProperty ;
-    rdfs:domain :Protocol ;
-    rdfs:range :CommunicationEvent .
-
-:hasRecipient a owl:FunctionalProperty,
-        owl:ObjectProperty ;
+:hasRecipient a owl:ObjectProperty ;
     rdfs:comment "A communication party fulfils the 'recipient' role if they receive the communicated information." ;
     rdfs:domain :CommunicationEvent ;
-    rdfs:range :CommunicationParty .
+    rdfs:range :CommunicationParty ;
+    owl:inverseOf :recipientOf .
 
-:hasSender a owl:FunctionalProperty,
-        owl:ObjectProperty ;
+:hasSender a owl:ObjectProperty ;
     rdfs:comment "A communication party fulfils the 'sender' role if they transmit the communicated information." ;
     rdfs:domain :CommunicationEvent ;
-    rdfs:range :CommunicationParty .
+    rdfs:range :CommunicationParty ;
+    owl:inverseOf :senderOf .
+
+:transmits a owl:ObjectProperty ;
+    rdfs:domain :CommunicationEvent ;
+    rdfs:range :Information .
 
 :Format a owl:Class ;
     rdfs:comment "An encoding system (in computer terms) is an example of a format.",
@@ -55,7 +43,7 @@
         "The way in which a thing is altered to act as a medium during a communication event." .
 
 :Information a owl:Class ;
-    rdfs:comment "Examples include - but are not limited to - ideas, knowledge, facts, claims, feelings and plans.",
+    rdfs:comment "Examples include, but are not limited to, ideas, knowledge, facts, claims, feelings and plans.",
         "That which is communicated." .
 
 :Medium a owl:Class ;
@@ -63,12 +51,12 @@
         "Radio waves (in wireless communication) and coaxial cables (in wired communication) are good examples." .
 
 :Protocol a owl:Class ;
-    rdfs:comment "A language may be regarded as a protocol in itself.",
+    rdfs:comment "A language (e.g., English or Spanish) may be regarded as a protocol in itself.",
         "A set of rules governing a communication event.",
         "Bluetooth, SMS, TCP/IP are all examples of communication protocols." .
 
 :CommunicationParty a owl:Class ;
-    rdfs:comment "An entity that participates in the communication event." .
+    rdfs:comment "An entity that participates in a communication event." .
 
 :CommunicationEvent a owl:Class ;
     rdfs:comment "The transport of information through space and/or time." .
