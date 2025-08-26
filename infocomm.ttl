@@ -1,107 +1,41 @@
-@prefix : <http://example.org/infocomm#> .
+@prefix : <http://w3id.org/infocomm#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-<http://example.org/infocomm> a owl:Ontology ;
+<http://w3id.org/infocomm> a owl:Ontology ;
     dcterms:description "An ontology for describing information communication."@en ;
     dcterms:title "Information Communication Ontology"@en .
 
-:AliceInvitesBobToBirthdayParty a :CommunicationEvent,
-        owl:NamedIndividual ;
-    :hasFormat :PlainText ;
-    :hasMedium :RadioWaves ;
-    :hasRecipient :Bob ;
-    :hasSender :Alice ;
-    :isGovernedBy :SMSProtocol ;
-    :transmits :BirthdayInvitationMessage .
+:governs a owl:ObjectProperty ;
+    rdfs:domain :Protocol ;
+    rdfs:range :CommunicationEvent ;
+    owl:inverseOf :isGovernedBy .
 
-:WeatherUpdateEvent a :CommunicationEvent,
-        owl:NamedIndividual ;
-    :hasFormat :HTML ;
-    :hasMedium :FibreOpticCable ;
-    :hasRecipient :Subscriber7845 ;
-    :hasSender :WeatherStationService ;
-    :isGovernedBy :HTTP ;
-    :transmits :WeatherForecastUpdate .
-
-:hasFormat a owl:FunctionalProperty,
-        owl:ObjectProperty ;
+:hasFormat a owl:ObjectProperty ;
     rdfs:domain :CommunicationEvent ;
     rdfs:range :Format .
 
-:hasMedium a owl:FunctionalProperty,
-        owl:ObjectProperty ;
+:hasMedium a owl:ObjectProperty ;
     rdfs:domain :CommunicationEvent ;
     rdfs:range :Medium .
 
-:isGovernedBy a owl:ObjectProperty ;
-    owl:inverseOf :governs .
-
-:recipientOf a owl:ObjectProperty ;
-    owl:inverseOf :hasRecipient .
-
-:senderOf a owl:ObjectProperty ;
-    owl:inverseOf :hasSender .
-
-:transmits a owl:FunctionalProperty,
-        owl:ObjectProperty ;
-    rdfs:domain :CommunicationEvent ;
-    rdfs:range :Information .
-
-:Alice a :CommunicationParty,
-        owl:NamedIndividual .
-
-:BirthdayInvitationMessage a :Information,
-        owl:NamedIndividual .
-
-:Bob a :CommunicationParty,
-        owl:NamedIndividual .
-
-:FibreOpticCable a :Medium,
-        owl:NamedIndividual .
-
-:HTML a :Format,
-        owl:NamedIndividual .
-
-:HTTP a :Protocol,
-        owl:NamedIndividual .
-
-:PlainText a :Format,
-        owl:NamedIndividual .
-
-:RadioWaves a :Medium,
-        owl:NamedIndividual .
-
-:SMSProtocol a :Protocol,
-        owl:NamedIndividual .
-
-:Subscriber7845 a :CommunicationParty,
-        owl:NamedIndividual .
-
-:WeatherForecastUpdate a :Information,
-        owl:NamedIndividual .
-
-:WeatherStationService a :CommunicationParty,
-        owl:NamedIndividual .
-
-:governs a owl:FunctionalProperty,
-        owl:ObjectProperty ;
-    rdfs:domain :Protocol ;
-    rdfs:range :CommunicationEvent .
-
-:hasRecipient a owl:FunctionalProperty,
-        owl:ObjectProperty ;
+:hasRecipient a owl:ObjectProperty ;
     rdfs:comment "A communication party fulfils the 'recipient' role if they receive the communicated information." ;
     rdfs:domain :CommunicationEvent ;
-    rdfs:range :CommunicationParty .
+    rdfs:range :CommunicationParty ;
+    owl:inverseOf :recipientOf .
 
-:hasSender a owl:FunctionalProperty,
-        owl:ObjectProperty ;
+:hasSender a owl:ObjectProperty ;
     rdfs:comment "A communication party fulfils the 'sender' role if they transmit the communicated information." ;
     rdfs:domain :CommunicationEvent ;
-    rdfs:range :CommunicationParty .
+    rdfs:range :CommunicationParty ;
+    owl:inverseOf :senderOf .
+
+:transmits a owl:ObjectProperty ;
+    rdfs:domain :CommunicationEvent ;
+    rdfs:range :Information .
 
 :Format a owl:Class ;
     rdfs:comment "An encoding system (in computer terms) is an example of a format.",
@@ -109,7 +43,7 @@
         "The way in which a thing is altered to act as a medium during a communication event." .
 
 :Information a owl:Class ;
-    rdfs:comment "Examples include - but are not limited to - ideas, knowledge, facts, claims, feelings and plans.",
+    rdfs:comment "Examples include, but are not limited to, ideas, knowledge, facts, claims, feelings and plans.",
         "That which is communicated." .
 
 :Medium a owl:Class ;
@@ -117,12 +51,12 @@
         "Radio waves (in wireless communication) and coaxial cables (in wired communication) are good examples." .
 
 :Protocol a owl:Class ;
-    rdfs:comment "A language may be regarded as a protocol in itself.",
+    rdfs:comment "A language (e.g., English or Spanish) may be regarded as a protocol in itself.",
         "A set of rules governing a communication event.",
         "Bluetooth, SMS, TCP/IP are all examples of communication protocols." .
 
 :CommunicationParty a owl:Class ;
-    rdfs:comment "An entity that participates in the communication event." .
+    rdfs:comment "An entity that participates in a communication event." .
 
 :CommunicationEvent a owl:Class ;
     rdfs:comment "The transport of information through space and/or time." .

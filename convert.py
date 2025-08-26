@@ -24,7 +24,7 @@ def convert_owl(input_path):
     print(f"Saved Turtle to {ttl_path}")
 
     # HTML using PyLODE
-    html_path = base_name + ".html"
+    html_path = "docs/" + base_name + ".html"
     subprocess.run(["pylode", input_path, "-o", html_path], check=True)
     print(f"Saved human-readable HTML with PyLODE to {html_path}")
     
