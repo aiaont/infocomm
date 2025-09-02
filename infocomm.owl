@@ -4,7 +4,10 @@
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-	 xmlns:terms="http://purl.org/dc/terms/">
+	 xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#">
+
+
 
     <owl:Ontology rdf:about="http://w3id.org/infocomm">
 		<terms:title xml:lang="en">Information Communication Ontology</terms:title>
