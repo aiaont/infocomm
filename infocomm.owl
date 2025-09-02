@@ -13,31 +13,31 @@
 
     <!-- Classes with Definitions -->
 	<owl:Class rdf:ID="CommunicationEvent">
-        <rdfs:comment>The transport of information through space and/or time.</rdfs:comment>
+        <skos:definition>The transport of information through space and/or time.</skos:definition>
     </owl:Class>
 	
     <owl:Class rdf:ID="Information">
-        <rdfs:comment>That which is communicated.</rdfs:comment>
+        <skos:definition>That which is communicated.</skos:definition>
 		<rdfs:comment>Examples include, but are not limited to, ideas, knowledge, facts, claims, feelings and plans.</rdfs:comment>
     </owl:Class>
 
     <owl:Class rdf:ID="CommunicationParty">
-        <rdfs:comment>An entity that participates in a communication event.</rdfs:comment>
+        <skos:definition>An entity that participates in a communication event.</skos:definition>
     </owl:Class>
 
     <owl:Class rdf:ID="Medium">
-        <rdfs:comment>A thing that is altered, either temporarily or permanently, to preserve information during a communication event.</rdfs:comment>
+        <skos:definition>A thing that is altered, either temporarily or permanently, to preserve information during a communication event.</skos:definition>
 		<rdfs:comment>Radio waves (in wireless communication) and coaxial cables (in wired communication) are good examples.</rdfs:comment>
     </owl:Class>
 	
 	<owl:Class rdf:ID="Format">
-        <rdfs:comment>The way in which a thing is altered to act as a medium during a communication event.</rdfs:comment>
+        <skos:definition>The way in which a thing is altered to act as a medium during a communication event.</skos:definition>
 		<rdfs:comment>Formats include things like JSON, CSV and PDF, but also things like UTF-8 or base64 encoding.</rdfs:comment>
 		<rdfs:comment>An encoding system (in computer terms) is an example of a format.</rdfs:comment>
     </owl:Class>
 
     <owl:Class rdf:ID="Protocol">
-        <rdfs:comment>A set of rules governing a communication event.</rdfs:comment>
+        <skos:definition>A set of rules governing a communication event.</skos:definition>
 		<rdfs:comment>Bluetooth, SMS, TCP/IP are all examples of communication protocols.</rdfs:comment>
 		<rdfs:comment>A language (e.g., English or Spanish) may be regarded as a protocol in itself.</rdfs:comment>
     </owl:Class>

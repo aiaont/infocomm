@@ -20,15 +20,11 @@ echo "⬆️ Upgrading pip..."
 python -m pip install --upgrade pip
 
 echo "📦 Installing core libraries..."
-pip install rdflib pyshacl
+pip install rdflib pyshacl jinja2
 
 echo "🧠 Installing reasoning and validation extensions..."
 pip install owlrl
 
-echo "🌐 Installing PyLODE for HTML rendering..."
-pip install pylode
-
 echo "✅ All libraries installed successfully!"
 echo "👉 To activate the virtual environment later, run:"
 echo "source venv/bin/activate"
-
