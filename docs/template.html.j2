@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ ontology.title or base_name }} — Ontology Documentation</title>
+  <style>
+    :root {
+      --bg: #fff;
+      --fg: #111;
+      --muted: #555;
+      --line: #e5e7eb;
+      --accent: #2563eb;
+      --badge: #0ea5e9;
+      --code-bg: #f3f4f6;
+    }
+    html, body { background: var(--bg); color: var(--fg); font: 16px/1.55 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, sans-serif; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
+    header { margin-bottom: 2rem; border-bottom: 1px solid var(--line); padding-bottom: 1rem; }
+    h1 { font-size: 1.75rem; margin: 0 0 .25rem; }
+    .iri { color: var(--muted); word-break: break-all; }
+    .desc { margin-top: .75rem; font-size: 1.05rem; }
+    .grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+    @media (min-width: 900px) { .grid { grid-template-columns: 1fr 1fr; } }
+    section { border: 1px solid var(--line); border-radius: 8px; padding: 1rem; }
+    h2 { font-size: 1.25rem; margin: 0 0 .5rem; }
+    h3 { font-size: 1.05rem; margin: .5rem 0; }
+    .item { border-top: 1px solid var(--line); padding-top: 1rem; margin-top: 1rem; }
+    .item:first-child { border-top: 0; padding-top: 0; margin-top: 0; }
+    .meta { font-size: .95rem; color: var(--muted); }
+    .kv { display: grid; grid-template-columns: 160px 1fr; gap: .25rem .75rem; margin-top: .5rem; }
+    .kv div.key { color: var(--muted); }
+    code { background: var(--code-bg); padding: .1rem .25rem; border-radius: 4px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; font-size: .9em; }
+    .badge { display: inline-block; font-size: .75rem; padding: .1rem .4rem; border-radius: .5rem; background: var(--badge); color: #fff; margin-right: .5rem; }
+    .defblock { border-left: 4px solid var(--badge); padding: .5rem .75rem; background: #f0f9ff; border-radius: 4px; margin: .5rem 0 .75rem; }
+    .comment { margin: .25rem 0; }
+    .section-title { font-weight: 600; margin-top: .25rem; }
+    .prefixes { margin-top: .5rem; font-size: .9rem; }
+    .kv div.key { font-weight: 600; }
+  </style>
+  <meta name="generator" content="codex-enhanced-ontology-renderer" />
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>{{ ontology.title or base_name }}</h1>
+      {% if ontology.iri %}<div class="iri">IRI: <code>{{ ontology.iri }}</code></div>{% endif %}
+      {% if ontology.description %}
+      <div class="desc defblock"><span class="badge">Description</span> {{ ontology.description }}</div>
+      {% endif %}
+      {% if prefixes %}
+      <div class="prefixes">
+        Prefixes:
+        {% for p in prefixes %}
+          <code>{{ p.prefix }}: &lt;{{ p.ns }}&gt;</code><br />
+        {% endfor %}
+      </div>
+      {% endif %}
+    </header>
+
+    <section>
+      <h2>Contents</h2>
+      <div class="kv">
+        {% if classes %}
+          <div class="key">Classes</div>
+          <div>
+            {% for c in classes %}
+              <a href="{{ c.anchor }}">{{ c.label }}</a>{% if not loop.last %}, {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+        {% if properties %}
+          <div class="key">Properties</div>
+          <div>
+            {% for p in properties %}
+              <a href="{{ p.anchor }}">{{ p.label }}</a>{% if not loop.last %}, {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </section>
+
+    <div class="grid">
+      <section>
+        <h2>Classes</h2>
+        {% if not classes %}
+          <div class="meta">No classes found.</div>
+        {% endif %}
+        {% for c in classes %}
+          <div class="item" id="{{ c.anchor | replace('#','') }}">
+            <h3>{{ c.label }}</h3>
+            <div class="meta">IRI: <code>{{ c.iri }}</code></div>
+
+            {# SKOS definitions first #}
+            {% if c.definitions %}
+              <div class="section-title"><span class="badge">SKOS</span>Definition</div>
+              {% for d in c.definitions %}
+                <div class="defblock">{{ d }}</div>
+              {% endfor %}
+            {% endif %}
+
+            {% if c.comments %}
+              <div class="section-title">Comments</div>
+              {% for cm in c.comments %}
+                <div class="comment">{{ cm }}</div>
+              {% endfor %}
+            {% endif %}
+
+            <div class="kv">
+              {% if c.subClassOf %}
+                <div class="key">SubClass Of</div>
+                <div>
+                  {% for sc in c.subClassOf %}
+                    <a href="{{ sc.href }}">{{ sc.text }}</a>{% if not loop.last %}, {% endif %}
+                  {% endfor %}
+                </div>
+              {% endif %}
+              {% if c.superClassOf %}
+                <div class="key">Superclass Of</div>
+                <div>
+                  {% for sc in c.superClassOf %}
+                    <a href="{{ sc.href }}">{{ sc.text }}</a>{% if not loop.last %}, {% endif %}
+                  {% endfor %}
+                </div>
+              {% endif %}
+              {% if c.inDomainOf %}
+                <div class="key">In Domain Of</div>
+                <div>
+                  {% for d in c.inDomainOf %}
+                    <a href="{{ d.href }}">{{ d.text }}</a>{% if not loop.last %}, {% endif %}
+                  {% endfor %}
+                </div>
+              {% endif %}
+              {% if c.inRangeOf %}
+                <div class="key">In Range Of</div>
+                <div>
+                  {% for r in c.inRangeOf %}
+                    <a href="{{ r.href }}">{{ r.text }}</a>{% if not loop.last %}, {% endif %}
+                  {% endfor %}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </section>
+
+      <section>
+        <h2>Properties</h2>
+        {% if not properties %}
+          <div class="meta">No properties found.</div>
+        {% endif %}
+        {% for p in properties %}
+          <div class="item" id="{{ p.anchor | replace('#','') }}">
+            <h3>{{ p.label }}</h3>
+            <div class="meta">IRI: <code>{{ p.iri }}</code></div>
+
+            {# SKOS definitions first #}
+            {% if p.definitions %}
+              <div class="section-title"><span class="badge">SKOS</span>Definition</div>
+              {% for d in p.definitions %}
+                <div class="defblock">{{ d }}</div>
+              {% endfor %}
+            {% endif %}
+
+            {% if p.comments %}
+              <div class="section-title">Comments</div>
+              {% for cm in p.comments %}
+                <div class="comment">{{ cm }}</div>
+              {% endfor %}
+            {% endif %}
+
+            <div class="kv">
+              {% if p.domain %}
+                <div class="key">Domain</div>
+                <div>
+                  {% for d in p.domain %}
+                    <a href="{{ d.href }}">{{ d.text }}</a>{% if not loop.last %}, {% endif %}
+                  {% endfor %}
+                </div>
+              {% endif %}
+              {% if p.range %}
+                <div class="key">Range</div>
+                <div>
+                  {% for r in p.range %}
+                    <a href="{{ r.href }}">{{ r.text }}</a>{% if not loop.last %}, {% endif %}
+                  {% endfor %}
+                </div>
+              {% endif %}
+              {% if p.subPropertyOf %}
+                <div class="key">SubProperty Of</div>
+                <div>
+                  {% for sp in p.subPropertyOf %}
+                    <a href="{{ sp.href }}">{{ sp.text }}</a>{% if not loop.last %}, {% endif %}
+                  {% endfor %}
+                </div>
+              {% endif %}
+              {% if p.inverses %}
+                <div class="key">Inverse Of</div>
+                <div>
+                  {% for inv in p.inverses %}
+                    <a href="{{ inv.href }}">{{ inv.text }}</a>{% if not loop.last %}, {% endif %}
+                  {% endfor %}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </section>
+    </div>
+  </div>
+</body>
+</html>

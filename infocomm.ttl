@@ -3,63 +3,76 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
 <http://w3id.org/infocomm> a owl:Ontology ;
     dcterms:description "An ontology for describing information communication."@en ;
     dcterms:title "Information Communication Ontology"@en .
 
 :governs a owl:ObjectProperty ;
+    rdfs:label "governs"@en ;
     rdfs:domain :Protocol ;
     rdfs:range :CommunicationEvent ;
     owl:inverseOf :isGovernedBy .
 
 :hasFormat a owl:ObjectProperty ;
+    rdfs:label "hasFormat"@en ;
     rdfs:domain :CommunicationEvent ;
     rdfs:range :Format .
 
 :hasMedium a owl:ObjectProperty ;
+    rdfs:label "hasMedium"@en ;
     rdfs:domain :CommunicationEvent ;
     rdfs:range :Medium .
 
 :hasRecipient a owl:ObjectProperty ;
+    rdfs:label "hasRecipient"@en ;
     rdfs:comment "A communication party fulfils the 'recipient' role if they receive the communicated information." ;
     rdfs:domain :CommunicationEvent ;
     rdfs:range :CommunicationParty ;
     owl:inverseOf :recipientOf .
 
 :hasSender a owl:ObjectProperty ;
+    rdfs:label "hasSender"@en ;
     rdfs:comment "A communication party fulfils the 'sender' role if they transmit the communicated information." ;
     rdfs:domain :CommunicationEvent ;
     rdfs:range :CommunicationParty ;
     owl:inverseOf :senderOf .
 
 :transmits a owl:ObjectProperty ;
+    rdfs:label "transmits"@en ;
     rdfs:domain :CommunicationEvent ;
     rdfs:range :Information .
 
 :Format a owl:Class ;
+    rdfs:label "Format"@en ;
     rdfs:comment "An encoding system (in computer terms) is an example of a format.",
-        "Formats include things like JSON, CSV and PDF, but also things like UTF-8 or base64 encoding.",
-        "The way in which a thing is altered to act as a medium during a communication event." .
+        "Formats include things like JSON, CSV and PDF, but also things like UTF-8 or base64 encoding." ;
+    skos:definition "The way in which a thing is altered to act as a medium during a communication event." .
 
 :Information a owl:Class ;
-    rdfs:comment "Examples include, but are not limited to, ideas, knowledge, facts, claims, feelings and plans.",
-        "That which is communicated." .
+    rdfs:label "Information"@en ;
+    rdfs:comment "Examples include, but are not limited to, ideas, knowledge, facts, claims, feelings and plans." ;
+    skos:definition "That which is communicated." .
 
 :Medium a owl:Class ;
-    rdfs:comment "A thing that is altered, either temporarily or permanently, to preserve information during a communication event.",
-        "Radio waves (in wireless communication) and coaxial cables (in wired communication) are good examples." .
+    rdfs:label "Medium"@en ;
+    rdfs:comment "Radio waves (in wireless communication) and coaxial cables (in wired communication) are good examples." ;
+    skos:definition "A thing that is altered, either temporarily or permanently, to preserve information during a communication event." .
 
 :Protocol a owl:Class ;
+    rdfs:label "Protocol"@en ;
     rdfs:comment "A language (e.g., English or Spanish) may be regarded as a protocol in itself.",
-        "A set of rules governing a communication event.",
-        "Bluetooth, SMS, TCP/IP are all examples of communication protocols." .
+        "Bluetooth, SMS, TCP/IP are all examples of communication protocols." ;
+    skos:definition "A set of rules governing a communication event." .
 
 :CommunicationParty a owl:Class ;
-    rdfs:comment "An entity that participates in a communication event." .
+    rdfs:label "CommunicationParty"@en ;
+    skos:definition "An entity that participates in a communication event." .
 
 :CommunicationEvent a owl:Class ;
-    rdfs:comment "The transport of information through space and/or time." .
+    rdfs:label "CommunicationEvent"@en ;
+    skos:definition "The transport of information through space and/or time." .
 
 [] a owl:AllDisjointClasses ;
     owl:members ( :CommunicationEvent :Information :CommunicationParty :Medium :Format :Protocol ) .
