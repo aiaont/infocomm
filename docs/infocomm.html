@@ -1,942 +1,285 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Information Communication Ontology</title>
-    <style>
-        #pylode {
-            position: fixed;
-            top: 130px;
-            left: -80px;
-            font-size: small;
-            transform: rotate(-90deg);
-            color: grey;
-        }
-        #pylode a {
-            font-size: 2em;
-            font-weight: bold;
-            text-decoration: none;
-            color: #005A9C;
-        }
-        #pylode a:hover {
-            color: #333;
-        }
-        #pylode #p {
-            color: #329545;
-        }
-        #pylode #y {
-            color: #f9cb33;
-        }
-        #pylode #version {
-            font-size: 1.0em;
-        }
-
-        .cardinality {
-            font-style: italic;
-            color: #aa00aa;
-        }
-
-        dl {
-            /*border: 1px solid navy;*/
-            /*padding:5px;*/
-        }
-
-        dt {
-            font-weight: bold;
-            padding: 0;
-        }
-
-        dd {
-            margin-bottom: 10px;
-            padding-top: 7px;
-        }
-
-        #metadata ul,
-        #classes ul {
-            list-style-type: none;
-        }
-
-        #metadata ul li,
-        #classes ul li {
-            margin-left: -40px;
-        }
-
-        ul.hlist {
-            list-style-type: none;
-            border: 1px solid navy;
-            padding:5px;
-            background-color: #F4FFFF;
-        }
-
-        ul.hierarchy {
-            border: 1px solid navy;
-            padding: 5px 25px 5px 25px;
-            background-color: #F4FFFF;
-        }
-
-
-        ul.hlist li {
-            display: inline;
-            margin-right: 10px;
-        }
-
-        .entity {
-            border: 1px solid navy;
-            margin:5px 0 5px 0;
-            padding: 5px;
-        }
-
-        .entity th {
-            width: 150px;
-            vertical-align: top;
-        }
-
-        .entity th,
-        .entity td {
-            padding-bottom: 20px;
-        }
-
-        .entity table th {
-            text-align: left;
-        }
-
-        section#overview img {
-            max-width: 1000px;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            text-align: left
-        }
-        h1, h2, h3 {
-            color: #005A9C; background: white
-        }
-        h1 {
-            font: 170% sans-serif;
-            line-height: 110%;
-        }
-        h2 {
-            font: 140% sans-serif;
-            margin-top:40px;
-        }
-        h3 {
-            font: 120% sans-serif;
-            margin-top: 20px;
-            padding-bottom: 5px;
-            border-bottom: 1px solid navy;
-        }
-        h4 { font: bold 100% sans-serif }
-        h5 { font: italic 100% sans-serif }
-        h6 { font: small-caps 100% sans-serif }
-
-        body {
-            padding: 2em 70px 2em 70px;
-            margin: 0;
-            font-family: sans-serif;
-            color: black;
-            background: white;
-            background-position: top left;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            text-align: justify;
-        }
-
-        section {
-            max-width: 1500px;
-        }
-
-        .figure {
-            margin-bottom: 20px;
-        }
-
-        :link { color: #00C; background: transparent }
-        :visited { color: #609; background: transparent }
-        a:active { color: #C00; background: transparent }
-
-        .sup-c,
-        .sup-op,
-        .sup-fp,
-        .sup-dp,
-        .sup-ap,
-        .sup-p,
-        .sup-ni,
-        .sup-con,
-        .sup-col {
-            cursor:help;
-        }
-
-        .sup-c {
-            color:orange;
-        }
-
-        .sup-op {
-            color:navy;
-        }
-
-        .sup-fp {
-            color:lightskyblue;
-        }
-
-        .sup-dp {
-            color:green;
-        }
-
-        .sup-ap {
-            color:darkred;
-        }
-
-        .sup-p {
-            color:black;
-        }
-
-        .sup-ni {
-            color:brown;
-        }
-
-        .sup-con {
-            color:orange;
-        }
-
-        .sup-col {
-            color:darkred;
-        }
-
-        sup {
-            margin-left: -3px;
-        }
-        code {
-            font-size: large;
-            color: darkred;
-        }
-
-        /* less prominent links for properties */
-        .proplink {
-            color: #336;
-            text-decoration: none;
-        }
-
-#toc {
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 2;
-    height: 100%;
-    overflow-y: auto;
-    padding: 10px;
-    border: solid 1px navy;
-    font-size: small;
-    width: 180px;
-}
-#toc h3 {
-    margin-top: 5px;
-}
-
-#toc ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-#toc .first > li {
-    margin-top: 5px;
-}
-
-#toc .second,
-#toc .third {
-    padding-left: 10px;
-}
-
-#content {
-    width: calc(100% - 150px);
-}
-
-.hover_property {
-    cursor: help;
-    text-decoration: none;
-    border-bottom: dashed 1px;
-}
-
-.setclass {
-    list-style-type: none;
-}
-	</style>
-    <link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABhklEQVQ4jbWPzStEURjG3yQLirlGKUnKFO45Z+SjmXvnnmthQcpCoVhYmD/AwmJiI3OvZuZc2U3UlKU0/gAslMw9JgvhHxAr2fko7r0jHSsl+TgbTz2Lt5731/MASEiJW9ONml2QyX6rsGalmnT74v8BDf12hxJfpV8d1uwNKUBYszabdFv84L8B9X0rESVmmUup2fme0cVhJWaZHw4NWL1SewEAfDe6H3Dy6Ll456WEJsRZS630MwCAOI20ei5OBpxse5zcBZw8eS4uPpfIuDiCainIg9umBCU0GZzgLZ9Hn31OgoATL+CkLDGB5H1OKj4nFd/FBxUXJ0UZNb4edw/6nLyJXaj5FeCVyPLNIVmYK8TG1IwWb16L1gEACAFV90ftoT8bdOX0EeyY99gxBXZMgRz6qGb1KantAACI0UvE6F5XJqEjpsdURouI0Vt5gGOUkUNnPu7ObGIIMfNaGqDmjDRi9FZldF1lRgYzeqUyeoiY4ag5Iy3RgOYRM8+/M2bG8efsO4hGrpmJseyMAAAAAElFTkSuQmCC" rel="icon" sizes="16x16" type="image/png">
-    <link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAC40lEQVRYhe2UT0hUQRzHp6Iss1B3VZKIDbbdfW9mnoi4f3zzjkJQeOgS0SEIb1EWBGGlLLu460zQPQM1unUIIjA6rfpm6ZAhHjoIRVQUFUlEbG+euTsdXG1d3VL3bVD4g+9h+L35fT/8fvN7ADgY9aHY5fpIvK82HO9ysu66wxWOzbkjcekKx0a2ALYA/n2AGi3a6ArFezcidziecQygNhhrcUficjP6PwBqtGijKxy/thnVBePHywYoDsFhl53GV8SEcsTx4usCMLUewTVpc23BNvEzm6Neyf1+KcG2vwqwUjgrOJq2JmHftwmkVBRGTvncFodnbI7vChO/FRznCmHsNM7aHM9Yk7Df5iqsLMw9sMNOK2g+jS4IEz0UJv4iuJZb2RltWnB4UZqH6ioGAgAAGe5vtiZhtzDx7OoRadLmeM7m6IRjhnLMW2Vx1bA5GhAmnhIcz6/xNj4Ujsky8UspwfayjDPjsF2Y6L7N8Vzx/BfP+KPg6LbgSqd8DnfJW2CnbaLhfH5ephpqygJYvQU4Z3P82TLRsDDhUTnmrSq+Y3N0Mg+Xldy/zwEAnLMWZ3pHpNExmfLs/t0dOdVcbT0JeKxUwFP2VljjqiE47Jp53LTXNxhsUZjerTByXWX6VZWRs/4bIQ2ACv+UAomgDzLCISNZxAxZKMhIDjLy1JfsaK+I+eGBUBNk5E2x8RogX/PdcDZUqieWTSh5D6nOVKqfhoycUmlHFFIyu5RXqf7AcQDISCpv/tqbMBqK883RtmpISRoxQyJKPgGn3wNk5NEigDFa6hslqV/Kj+FdBQD0bshIDlKSLlVcoWQo36UhR80BAMB73lulMn0EMpJTqD6qJiOt3mho/8GbkT2BZNgDB/V+RI0fkOrT3kRIVQbaDizJm2hdNbINBxwk5xAj3yEjuV9rZ1iIkgxixkLBA83mz8uCjLwoGwAx0vOnFSy5mtR4VTaAQvVORMnwZgSpzkrV/QmdE2tKe46+MQAAAABJRU5ErkJggg==" rel="icon" sizes="32x32" type="image/png">
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-    <script id="schema.org" type="application/ld+json">
-[
-  {
-    "@id": "http://w3id.org/infocomm",
-    "@type": [
-      "https://schema.org/DefinedTermSet"
-    ],
-    "https://schema.org/description": [
-      {
-        "@language": "en",
-        "@value": "An ontology for describing information communication."
-      }
-    ],
-    "https://schema.org/name": [
-      {
-        "@language": "en",
-        "@value": "Information Communication Ontology"
-      }
-    ]
-  }
-]
-	</script>
-  </head>
-  <body>
-    <div id="content">
-      <div class="section" id="metadata">
-        <h1>Information Communication Ontology</h1>
-        <h2>Metadata</h2>
-        <dl>
-          <div>
-            <dt>
-              <strong>IRI</strong>
-            </dt>
-            <dd>
-              <code>http://w3id.org/infocomm</code>
-            </dd>
-          </div>
-          <div>
-            <dt>
-              <a class="hover_property" href="http://purl.org/dc/terms/title" title="None. Defined in None">Title</a>
-            </dt>
-            <dd><p>Information Communication Ontology</p></dd>
-          </div>
-          <div>
-            <dt>
-              <a class="hover_property" href="http://purl.org/dc/terms/description" title="None. Defined in None">Description</a>
-            </dt>
-            <dd><p>An ontology for describing information communication.</p></dd>
-          </div>
-        </dl>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Information Communication Ontology — Ontology Documentation</title>
+  <style>
+    :root {
+      --bg: #fff;
+      --fg: #111;
+      --muted: #555;
+      --line: #e5e7eb;
+      --accent: #2563eb;
+      --badge: #0ea5e9;
+      --code-bg: #f3f4f6;
+    }
+    html, body { background: var(--bg); color: var(--fg); font: 16px/1.55 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, sans-serif; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
+    header { margin-bottom: 2rem; border-bottom: 1px solid var(--line); padding-bottom: 1rem; }
+    h1 { font-size: 1.75rem; margin: 0 0 .25rem; }
+    .iri { color: var(--muted); word-break: break-all; }
+    .desc { margin-top: .75rem; font-size: 1.05rem; }
+    .grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+    @media (min-width: 900px) { .grid { grid-template-columns: 1fr 1fr; } }
+    section { border: 1px solid var(--line); border-radius: 8px; padding: 1rem; }
+    h2 { font-size: 1.25rem; margin: 0 0 .5rem; }
+    h3 { font-size: 1.05rem; margin: .5rem 0; }
+    .item { border-top: 1px solid var(--line); padding-top: 1rem; margin-top: 1rem; }
+    .item:first-child { border-top: 0; padding-top: 0; margin-top: 0; }
+    .meta { font-size: .95rem; color: var(--muted); }
+    .kv { display: grid; grid-template-columns: 160px 1fr; gap: .25rem .75rem; margin-top: .5rem; }
+    .kv div.key { color: var(--muted); }
+    code { background: var(--code-bg); padding: .1rem .25rem; border-radius: 4px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; font-size: .9em; }
+    .badge { display: inline-block; font-size: .75rem; padding: .1rem .4rem; border-radius: .5rem; background: var(--badge); color: #fff; margin-right: .5rem; }
+    .defblock { border-left: 4px solid var(--badge); padding: .5rem .75rem; background: #f0f9ff; border-radius: 4px; margin: .5rem 0 .75rem; }
+    .comment { margin: .25rem 0; }
+    .section-title { font-weight: 600; margin-top: .25rem; }
+    .prefixes { margin-top: .5rem; font-size: .9rem; }
+    .kv div.key { font-weight: 600; }
+  </style>
+  <meta name="generator" content="codex-enhanced-ontology-renderer" />
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Information Communication Ontology</h1>
+<div class="iri">IRI: <code>http://w3id.org/infocomm</code></div>      <div class="desc defblock"><span class="badge">Description</span> An ontology for describing information communication.</div>
+      <div class="prefixes">
+        Prefixes:
+          <code>:: &lt;http://w3id.org/infocomm#&gt;</code><br />
+          <code>dcterms: &lt;http://purl.org/dc/terms/&gt;</code><br />
+          <code>ns1: &lt;http://w3id.org/&gt;</code><br />
+          <code>owl: &lt;http://www.w3.org/2002/07/owl#&gt;</code><br />
+          <code>rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</code><br />
+          <code>rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;</code><br />
+          <code>skos: &lt;http://www.w3.org/2004/02/skos/core#&gt;</code><br />
       </div>
-      <div class="section" id="classes">
+    </header>
+
+    <section>
+      <h2>Contents</h2>
+      <div class="kv">
+          <div class="key">Classes</div>
+          <div>
+              <a href="#cls--CommunicationEvent">CommunicationEvent</a>,               <a href="#cls--CommunicationParty">CommunicationParty</a>,               <a href="#cls--Format">Format</a>,               <a href="#cls--Information">Information</a>,               <a href="#cls--Medium">Medium</a>,               <a href="#cls--Protocol">Protocol</a>          </div>
+          <div class="key">Properties</div>
+          <div>
+              <a href="#prop--governs">governs</a>,               <a href="#prop--hasFormat">hasFormat</a>,               <a href="#prop--hasMedium">hasMedium</a>,               <a href="#prop--hasRecipient">hasRecipient</a>,               <a href="#prop--hasSender">hasSender</a>,               <a href="#prop--transmits">transmits</a>          </div>
+      </div>
+    </section>
+
+    <div class="grid">
+      <section>
         <h2>Classes</h2>
-        <div class="property entity" id="CommunicationEvent">
-          <h3>Communication Event
-            <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>http://w3id.org/infocomm#CommunicationEvent</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://purl.org/dc/terms/description" title="None. Defined in None">Description</a>
-              </th>
-              <td><p>The transport of information through space and/or time.</p></td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/inDomainOf" title="None. Defined in None">In Domain Of</a>
-              </th>
-              <td>
-                <ul>
-                  <li>
-                    <span>
-                      <a href="#hasSender">hasSender</a>
-                      <sup class="sup-op" title="OWL Object Property">op</sup>
-                    </span>
-                  </li>
-                  <li>
-                    <span>
-                      <a href="#hasRecipient">hasRecipient</a>
-                      <sup class="sup-op" title="OWL Object Property">op</sup>
-                    </span>
-                  </li>
-                  <li>
-                    <span>
-                      <a href="#hasMedium">hasMedium</a>
-                      <sup class="sup-op" title="OWL Object Property">op</sup>
-                    </span>
-                  </li>
-                  <li>
-                    <span>
-                      <a href="#hasFormat">hasFormat</a>
-                      <sup class="sup-op" title="OWL Object Property">op</sup>
-                    </span>
-                  </li>
-                  <li>
-                    <span>
-                      <a href="#transmits">transmits</a>
-                      <sup class="sup-op" title="OWL Object Property">op</sup>
-                    </span>
-                  </li>
-                </ul>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/inRangeOf" title="None. Defined in None">In Range Of</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#governs">governs</a>
-                  <sup class="sup-op" title="OWL Object Property">op</sup>
-                </span>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="property entity" id="Information">
-          <h3>Information
-            <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>http://w3id.org/infocomm#Information</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://purl.org/dc/terms/description" title="None. Defined in None">Description</a>
-              </th>
-              <td>
-                <ul>
-                  <li><p>That which is communicated.</p></li>
-                  <li><p>Examples include, but are not limited to, ideas, knowledge, facts, claims, feelings and plans.</p></li>
-                </ul>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/inRangeOf" title="None. Defined in None">In Range Of</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#transmits">transmits</a>
-                  <sup class="sup-op" title="OWL Object Property">op</sup>
-                </span>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="property entity" id="CommunicationParty">
-          <h3>Communication Party
-            <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>http://w3id.org/infocomm#CommunicationParty</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://purl.org/dc/terms/description" title="None. Defined in None">Description</a>
-              </th>
-              <td><p>An entity that participates in a communication event.</p></td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/inRangeOf" title="None. Defined in None">In Range Of</a>
-              </th>
-              <td>
-                <ul>
-                  <li>
-                    <span>
-                      <a href="#hasSender">hasSender</a>
-                      <sup class="sup-op" title="OWL Object Property">op</sup>
-                    </span>
-                  </li>
-                  <li>
-                    <span>
-                      <a href="#hasRecipient">hasRecipient</a>
-                      <sup class="sup-op" title="OWL Object Property">op</sup>
-                    </span>
-                  </li>
-                </ul>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="property entity" id="Medium">
-          <h3>Medium
-            <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>http://w3id.org/infocomm#Medium</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://purl.org/dc/terms/description" title="None. Defined in None">Description</a>
-              </th>
-              <td>
-                <ul>
-                  <li><p>A thing that is altered, either temporarily or permanently, to preserve information during a communication event.</p></li>
-                  <li><p>Radio waves (in wireless communication) and coaxial cables (in wired communication) are good examples.</p></li>
-                </ul>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/inRangeOf" title="None. Defined in None">In Range Of</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#hasMedium">hasMedium</a>
-                  <sup class="sup-op" title="OWL Object Property">op</sup>
-                </span>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="property entity" id="Format">
-          <h3>Format
-            <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>http://w3id.org/infocomm#Format</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://purl.org/dc/terms/description" title="None. Defined in None">Description</a>
-              </th>
-              <td>
-                <ul>
-                  <li><p>The way in which a thing is altered to act as a medium during a communication event.</p></li>
-                  <li><p>Formats include things like JSON, CSV and PDF, but also things like UTF-8 or base64 encoding.</p></li>
-                  <li><p>An encoding system (in computer terms) is an example of a format.</p></li>
-                </ul>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/inRangeOf" title="None. Defined in None">In Range Of</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#hasFormat">hasFormat</a>
-                  <sup class="sup-op" title="OWL Object Property">op</sup>
-                </span>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="property entity" id="Protocol">
-          <h3>Protocol
-            <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>http://w3id.org/infocomm#Protocol</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://purl.org/dc/terms/description" title="None. Defined in None">Description</a>
-              </th>
-              <td>
-                <ul>
-                  <li><p>A set of rules governing a communication event.</p></li>
-                  <li><p>Bluetooth, SMS, TCP/IP are all examples of communication protocols.</p></li>
-                  <li><p>A language (e.g., English or Spanish) may be regarded as a protocol in itself.</p></li>
-                </ul>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/inDomainOf" title="None. Defined in None">In Domain Of</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#governs">governs</a>
-                  <sup class="sup-op" title="OWL Object Property">op</sup>
-                </span>
-              </td>
-            </tr>
-          </table>
-        </div>
-      </div>
-      <div class="section" id="objectproperties">
-        <h2>Object Properties</h2>
-        <div class="property entity" id="hasSender">
-          <h3>has sender
-            <sup class="sup-op" title="OWL Object Property">op</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>http://w3id.org/infocomm#hasSender</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://purl.org/dc/terms/description" title="None. Defined in None">Description</a>
-              </th>
-              <td><p>A communication party fulfils the 'sender' role if they transmit the communicated information.</p></td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="None. Defined in None">Domain</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#CommunicationEvent">CommunicationEvent</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="None. Defined in None">Range</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#CommunicationParty">CommunicationParty</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="property entity" id="hasRecipient">
-          <h3>has recipient
-            <sup class="sup-op" title="OWL Object Property">op</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>http://w3id.org/infocomm#hasRecipient</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://purl.org/dc/terms/description" title="None. Defined in None">Description</a>
-              </th>
-              <td><p>A communication party fulfils the 'recipient' role if they receive the communicated information.</p></td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="None. Defined in None">Domain</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#CommunicationEvent">CommunicationEvent</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="None. Defined in None">Range</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#CommunicationParty">CommunicationParty</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="property entity" id="hasMedium">
-          <h3>has medium
-            <sup class="sup-op" title="OWL Object Property">op</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>http://w3id.org/infocomm#hasMedium</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="None. Defined in None">Domain</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#CommunicationEvent">CommunicationEvent</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="None. Defined in None">Range</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#Medium">Medium</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="property entity" id="hasFormat">
-          <h3>has format
-            <sup class="sup-op" title="OWL Object Property">op</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>http://w3id.org/infocomm#hasFormat</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="None. Defined in None">Domain</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#CommunicationEvent">CommunicationEvent</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="None. Defined in None">Range</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#Format">Format</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="property entity" id="governs">
-          <h3>governs
-            <sup class="sup-op" title="OWL Object Property">op</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>http://w3id.org/infocomm#governs</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="None. Defined in None">Domain</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#Protocol">Protocol</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="None. Defined in None">Range</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#CommunicationEvent">CommunicationEvent</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="property entity" id="transmits">
-          <h3>transmits
-            <sup class="sup-op" title="OWL Object Property">op</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>http://w3id.org/infocomm#transmits</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="None. Defined in None">Domain</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#CommunicationEvent">CommunicationEvent</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="None. Defined in None">Range</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#Information">Information</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-          </table>
-        </div>
-      </div>
-      <div id="namespaces">
-        <h2>Namespaces</h2>
-        <dl>
-          <dt id=":">:</dt>
-          <dd>
-            <code>http://w3id.org/infocomm#</code>
-          </dd>
-          <dt id="dcterms">dcterms</dt>
-          <dd>
-            <code>http://purl.org/dc/terms/</code>
-          </dd>
-          <dt id="ns1">ns1</dt>
-          <dd>
-            <code>http://w3id.org/</code>
-          </dd>
-          <dt id="owl">owl</dt>
-          <dd>
-            <code>http://www.w3.org/2002/07/owl#</code>
-          </dd>
-          <dt id="rdf">rdf</dt>
-          <dd>
-            <code>http://www.w3.org/1999/02/22-rdf-syntax-ns#</code>
-          </dd>
-          <dt id="rdfs">rdfs</dt>
-          <dd>
-            <code>http://www.w3.org/2000/01/rdf-schema#</code>
-          </dd>
-        </dl>
-      </div>
-      <div id="legend">
-        <h2>Legend</h2>
-        <table class="entity">
-          <tr>
-            <td>
-              <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-            </td>
-            <td>Classes</td>
-          </tr>
-          <tr>
-            <td>
-              <sup class="sup-op" title="OWL Object Property">op</sup>
-            </td>
-            <td>Object Properties</td>
-          </tr>
-        </table>
-      </div>
+          <div class="item" id="cls--CommunicationEvent">
+            <h3>CommunicationEvent</h3>
+            <div class="meta">IRI: <code>http://w3id.org/infocomm#CommunicationEvent</code></div>
+
+              <div class="section-title"><span class="badge">SKOS</span>Definition</div>
+                <div class="defblock">The transport of information through space and/or time.</div>
+
+
+            <div class="kv">
+                <div class="key">In Domain Of</div>
+                <div>
+                    <a href="#prop--hasSender">:hasSender</a>,                     <a href="#prop--hasRecipient">:hasRecipient</a>,                     <a href="#prop--hasMedium">:hasMedium</a>,                     <a href="#prop--hasFormat">:hasFormat</a>,                     <a href="#prop--transmits">:transmits</a>                </div>
+                <div class="key">In Range Of</div>
+                <div>
+                    <a href="#prop--governs">:governs</a>                </div>
+            </div>
+          </div>
+          <div class="item" id="cls--CommunicationParty">
+            <h3>CommunicationParty</h3>
+            <div class="meta">IRI: <code>http://w3id.org/infocomm#CommunicationParty</code></div>
+
+              <div class="section-title"><span class="badge">SKOS</span>Definition</div>
+                <div class="defblock">An entity that participates in a communication event.</div>
+
+
+            <div class="kv">
+                <div class="key">In Range Of</div>
+                <div>
+                    <a href="#prop--hasSender">:hasSender</a>,                     <a href="#prop--hasRecipient">:hasRecipient</a>                </div>
+            </div>
+          </div>
+          <div class="item" id="cls--Format">
+            <h3>Format</h3>
+            <div class="meta">IRI: <code>http://w3id.org/infocomm#Format</code></div>
+
+              <div class="section-title"><span class="badge">SKOS</span>Definition</div>
+                <div class="defblock">The way in which a thing is altered to act as a medium during a communication event.</div>
+
+              <div class="section-title">Comments</div>
+                <div class="comment">Formats include things like JSON, CSV and PDF, but also things like UTF-8 or base64 encoding.</div>
+                <div class="comment">An encoding system (in computer terms) is an example of a format.</div>
+
+            <div class="kv">
+                <div class="key">In Range Of</div>
+                <div>
+                    <a href="#prop--hasFormat">:hasFormat</a>                </div>
+            </div>
+          </div>
+          <div class="item" id="cls--Information">
+            <h3>Information</h3>
+            <div class="meta">IRI: <code>http://w3id.org/infocomm#Information</code></div>
+
+              <div class="section-title"><span class="badge">SKOS</span>Definition</div>
+                <div class="defblock">That which is communicated.</div>
+
+              <div class="section-title">Comments</div>
+                <div class="comment">Examples include, but are not limited to, ideas, knowledge, facts, claims, feelings and plans.</div>
+
+            <div class="kv">
+                <div class="key">In Range Of</div>
+                <div>
+                    <a href="#prop--transmits">:transmits</a>                </div>
+            </div>
+          </div>
+          <div class="item" id="cls--Medium">
+            <h3>Medium</h3>
+            <div class="meta">IRI: <code>http://w3id.org/infocomm#Medium</code></div>
+
+              <div class="section-title"><span class="badge">SKOS</span>Definition</div>
+                <div class="defblock">A thing that is altered, either temporarily or permanently, to preserve information during a communication event.</div>
+
+              <div class="section-title">Comments</div>
+                <div class="comment">Radio waves (in wireless communication) and coaxial cables (in wired communication) are good examples.</div>
+
+            <div class="kv">
+                <div class="key">In Range Of</div>
+                <div>
+                    <a href="#prop--hasMedium">:hasMedium</a>                </div>
+            </div>
+          </div>
+          <div class="item" id="cls--Protocol">
+            <h3>Protocol</h3>
+            <div class="meta">IRI: <code>http://w3id.org/infocomm#Protocol</code></div>
+
+              <div class="section-title"><span class="badge">SKOS</span>Definition</div>
+                <div class="defblock">A set of rules governing a communication event.</div>
+
+              <div class="section-title">Comments</div>
+                <div class="comment">Bluetooth, SMS, TCP/IP are all examples of communication protocols.</div>
+                <div class="comment">A language (e.g., English or Spanish) may be regarded as a protocol in itself.</div>
+
+            <div class="kv">
+                <div class="key">In Domain Of</div>
+                <div>
+                    <a href="#prop--governs">:governs</a>                </div>
+            </div>
+          </div>
+      </section>
+
+      <section>
+        <h2>Properties</h2>
+          <div class="item" id="prop--governs">
+            <h3>governs</h3>
+            <div class="meta">IRI: <code>http://w3id.org/infocomm#governs</code></div>
+
+
+
+            <div class="kv">
+                <div class="key">Domain</div>
+                <div>
+                    <a href="#cls--Protocol">:Protocol</a>                </div>
+                <div class="key">Range</div>
+                <div>
+                    <a href="#cls--CommunicationEvent">:CommunicationEvent</a>                </div>
+                <div class="key">Inverse Of</div>
+                <div>
+                    <a href="#prop--isGovernedBy">:isGovernedBy</a>                </div>
+            </div>
+          </div>
+          <div class="item" id="prop--hasFormat">
+            <h3>hasFormat</h3>
+            <div class="meta">IRI: <code>http://w3id.org/infocomm#hasFormat</code></div>
+
+
+
+            <div class="kv">
+                <div class="key">Domain</div>
+                <div>
+                    <a href="#cls--CommunicationEvent">:CommunicationEvent</a>                </div>
+                <div class="key">Range</div>
+                <div>
+                    <a href="#cls--Format">:Format</a>                </div>
+            </div>
+          </div>
+          <div class="item" id="prop--hasMedium">
+            <h3>hasMedium</h3>
+            <div class="meta">IRI: <code>http://w3id.org/infocomm#hasMedium</code></div>
+
+
+
+            <div class="kv">
+                <div class="key">Domain</div>
+                <div>
+                    <a href="#cls--CommunicationEvent">:CommunicationEvent</a>                </div>
+                <div class="key">Range</div>
+                <div>
+                    <a href="#cls--Medium">:Medium</a>                </div>
+            </div>
+          </div>
+          <div class="item" id="prop--hasRecipient">
+            <h3>hasRecipient</h3>
+            <div class="meta">IRI: <code>http://w3id.org/infocomm#hasRecipient</code></div>
+
+
+              <div class="section-title">Comments</div>
+                <div class="comment">A communication party fulfils the 'recipient' role if they receive the communicated information.</div>
+
+            <div class="kv">
+                <div class="key">Domain</div>
+                <div>
+                    <a href="#cls--CommunicationEvent">:CommunicationEvent</a>                </div>
+                <div class="key">Range</div>
+                <div>
+                    <a href="#cls--CommunicationParty">:CommunicationParty</a>                </div>
+                <div class="key">Inverse Of</div>
+                <div>
+                    <a href="#prop--recipientOf">:recipientOf</a>                </div>
+            </div>
+          </div>
+          <div class="item" id="prop--hasSender">
+            <h3>hasSender</h3>
+            <div class="meta">IRI: <code>http://w3id.org/infocomm#hasSender</code></div>
+
+
+              <div class="section-title">Comments</div>
+                <div class="comment">A communication party fulfils the 'sender' role if they transmit the communicated information.</div>
+
+            <div class="kv">
+                <div class="key">Domain</div>
+                <div>
+                    <a href="#cls--CommunicationEvent">:CommunicationEvent</a>                </div>
+                <div class="key">Range</div>
+                <div>
+                    <a href="#cls--CommunicationParty">:CommunicationParty</a>                </div>
+                <div class="key">Inverse Of</div>
+                <div>
+                    <a href="#prop--senderOf">:senderOf</a>                </div>
+            </div>
+          </div>
+          <div class="item" id="prop--transmits">
+            <h3>transmits</h3>
+            <div class="meta">IRI: <code>http://w3id.org/infocomm#transmits</code></div>
+
+
+
+            <div class="kv">
+                <div class="key">Domain</div>
+                <div>
+                    <a href="#cls--CommunicationEvent">:CommunicationEvent</a>                </div>
+                <div class="key">Range</div>
+                <div>
+                    <a href="#cls--Information">:Information</a>                </div>
+            </div>
+          </div>
+      </section>
     </div>
-    <div id="pylode">
-      <p>made by 
-        <a href="https://github.com/rdflib/pyLODE">
-          <span id="p">p</span>
-          <span id="y">y</span>
-          <span>LODE</span>
-        </a>
-        <a href="https://github.com/rdflib/pyLODE/release/3.0.1" id="version">3.0.1</a>
-      </p>
-    </div>
-    <div id="toc">
-      <h3>Table of Contents</h3>
-      <ul class="first">
-        <li>
-          <h4>
-            <a href="#metadata">Metadata</a>
-          </h4>
-        </li>
-        <li>
-          <h4>
-            <a href="#classes">Classes</a>
-          </h4>
-          <ul class="second">
-            <li>
-              <a href="#CommunicationEvent">Communication Event</a>
-            </li>
-            <li>
-              <a href="#Information">Information</a>
-            </li>
-            <li>
-              <a href="#CommunicationParty">Communication Party</a>
-            </li>
-            <li>
-              <a href="#Medium">Medium</a>
-            </li>
-            <li>
-              <a href="#Format">Format</a>
-            </li>
-            <li>
-              <a href="#Protocol">Protocol</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <h4>
-            <a href="#objectproperties">Object Properties</a>
-          </h4>
-          <ul class="second">
-            <li>
-              <a href="#hasSender">has sender</a>
-            </li>
-            <li>
-              <a href="#hasRecipient">has recipient</a>
-            </li>
-            <li>
-              <a href="#hasMedium">has medium</a>
-            </li>
-            <li>
-              <a href="#hasFormat">has format</a>
-            </li>
-            <li>
-              <a href="#governs">governs</a>
-            </li>
-            <li>
-              <a href="#transmits">transmits</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <h4>
-            <a href="#namespaces">Namespaces</a>
-          </h4>
-          <ul class="second">
-            <li>
-              <a href="#"></a>
-            </li>
-            <li>
-              <a href="#dcterms">dcterms</a>
-            </li>
-            <li>
-              <a href="#ns1">ns1</a>
-            </li>
-            <li>
-              <a href="#owl">owl</a>
-            </li>
-            <li>
-              <a href="#rdf">rdf</a>
-            </li>
-            <li>
-              <a href="#rdfs">rdfs</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <h4>
-            <a href="#legend">Legend</a>
-          </h4>
-          <ul class="second"></ul>
-        </li>
-      </ul>
-    </div>
-  </body>
+  </div>
+</body>
 </html>
