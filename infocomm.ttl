@@ -29,15 +29,23 @@
     rdfs:label "hasRecipient"@en ;
     rdfs:comment "A communication party fulfils the 'recipient' role if they receive the communicated information." ;
     rdfs:domain :CommunicationEvent ;
-    rdfs:range :CommunicationParty ;
-    owl:inverseOf :recipientOf .
+    rdfs:range :CommunicationParty .
 
 :hasSender a owl:ObjectProperty ;
     rdfs:label "hasSender"@en ;
     rdfs:comment "A communication party fulfils the 'sender' role if they transmit the communicated information." ;
     rdfs:domain :CommunicationEvent ;
-    rdfs:range :CommunicationParty ;
-    owl:inverseOf :senderOf .
+    rdfs:range :CommunicationParty .
+
+:recipientOf a owl:ObjectProperty ;
+    rdfs:label "recipientOf"@en ;
+    rdfs:domain :CommunicationParty ;
+    rdfs:range :Information .
+
+:senderOf a owl:ObjectProperty ;
+    rdfs:label "senderOf"@en ;
+    rdfs:domain :CommunicationParty ;
+    rdfs:range :Information .
 
 :transmits a owl:ObjectProperty ;
     rdfs:label "transmits"@en ;
@@ -50,11 +58,6 @@
         "Formats include things like JSON, CSV and PDF, but also things like UTF-8 or base64 encoding." ;
     skos:definition "The way in which a thing is altered to act as a medium during a communication event." .
 
-:Information a owl:Class ;
-    rdfs:label "Information"@en ;
-    rdfs:comment "Examples include, but are not limited to, ideas, knowledge, facts, claims, feelings and plans." ;
-    skos:definition "That which is communicated." .
-
 :Medium a owl:Class ;
     rdfs:label "Medium"@en ;
     rdfs:comment "Radio waves (in wireless communication) and coaxial cables (in wired communication) are good examples." ;
@@ -65,6 +68,11 @@
     rdfs:comment "A language (e.g., English or Spanish) may be regarded as a protocol in itself.",
         "Bluetooth, SMS, TCP/IP are all examples of communication protocols." ;
     skos:definition "A set of rules governing a communication event." .
+
+:Information a owl:Class ;
+    rdfs:label "Information"@en ;
+    rdfs:comment "Examples include, but are not limited to, ideas, knowledge, facts, claims, feelings and plans." ;
+    skos:definition "That which is communicated." .
 
 :CommunicationParty a owl:Class ;
     rdfs:label "CommunicationParty"@en ;
