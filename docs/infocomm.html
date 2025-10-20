@@ -67,7 +67,7 @@
               <a href="#cls--CommunicationEvent">CommunicationEvent</a>,               <a href="#cls--CommunicationParty">CommunicationParty</a>,               <a href="#cls--Format">Format</a>,               <a href="#cls--Information">Information</a>,               <a href="#cls--Medium">Medium</a>,               <a href="#cls--Protocol">Protocol</a>          </div>
           <div class="key">Properties</div>
           <div>
-              <a href="#prop--governs">governs</a>,               <a href="#prop--hasFormat">hasFormat</a>,               <a href="#prop--hasMedium">hasMedium</a>,               <a href="#prop--hasRecipient">hasRecipient</a>,               <a href="#prop--hasSender">hasSender</a>,               <a href="#prop--transmits">transmits</a>          </div>
+              <a href="#prop--governs">governs</a>,               <a href="#prop--hasFormat">hasFormat</a>,               <a href="#prop--hasMedium">hasMedium</a>,               <a href="#prop--hasRecipient">hasRecipient</a>,               <a href="#prop--hasSender">hasSender</a>,               <a href="#prop--recipientOf">recipientOf</a>,               <a href="#prop--senderOf">senderOf</a>,               <a href="#prop--transmits">transmits</a>          </div>
       </div>
     </section>
 
@@ -100,6 +100,9 @@
 
 
             <div class="kv">
+                <div class="key">In Domain Of</div>
+                <div>
+                    <a href="#prop--senderOf">:senderOf</a>,                     <a href="#prop--recipientOf">:recipientOf</a>                </div>
                 <div class="key">In Range Of</div>
                 <div>
                     <a href="#prop--hasSender">:hasSender</a>,                     <a href="#prop--hasRecipient">:hasRecipient</a>                </div>
@@ -135,7 +138,7 @@
             <div class="kv">
                 <div class="key">In Range Of</div>
                 <div>
-                    <a href="#prop--transmits">:transmits</a>                </div>
+                    <a href="#prop--senderOf">:senderOf</a>,                     <a href="#prop--recipientOf">:recipientOf</a>,                     <a href="#prop--transmits">:transmits</a>                </div>
             </div>
           </div>
           <div class="item" id="cls--Medium">
@@ -238,9 +241,6 @@
                 <div class="key">Range</div>
                 <div>
                     <a href="#cls--CommunicationParty">:CommunicationParty</a>                </div>
-                <div class="key">Inverse Of</div>
-                <div>
-                    <a href="#prop--recipientOf">:recipientOf</a>                </div>
             </div>
           </div>
           <div class="item" id="prop--hasSender">
@@ -258,9 +258,36 @@
                 <div class="key">Range</div>
                 <div>
                     <a href="#cls--CommunicationParty">:CommunicationParty</a>                </div>
-                <div class="key">Inverse Of</div>
+            </div>
+          </div>
+          <div class="item" id="prop--recipientOf">
+            <h3>recipientOf</h3>
+            <div class="meta">IRI: <code>http://w3id.org/infocomm#recipientOf</code></div>
+
+
+
+            <div class="kv">
+                <div class="key">Domain</div>
                 <div>
-                    <a href="#prop--senderOf">:senderOf</a>                </div>
+                    <a href="#cls--CommunicationParty">:CommunicationParty</a>                </div>
+                <div class="key">Range</div>
+                <div>
+                    <a href="#cls--Information">:Information</a>                </div>
+            </div>
+          </div>
+          <div class="item" id="prop--senderOf">
+            <h3>senderOf</h3>
+            <div class="meta">IRI: <code>http://w3id.org/infocomm#senderOf</code></div>
+
+
+
+            <div class="kv">
+                <div class="key">Domain</div>
+                <div>
+                    <a href="#cls--CommunicationParty">:CommunicationParty</a>                </div>
+                <div class="key">Range</div>
+                <div>
+                    <a href="#cls--Information">:Information</a>                </div>
             </div>
           </div>
           <div class="item" id="prop--transmits">
