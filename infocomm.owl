@@ -54,16 +54,26 @@
 		<rdfs:label xml:lang="en">hasSender</rdfs:label>
         <rdfs:domain rdf:resource="#CommunicationEvent"/>
         <rdfs:range rdf:resource="#CommunicationParty"/>
-		<owl:inverseOf rdf:resource="#senderOf"/>
 		<rdfs:comment>A communication party fulfils the 'sender' role if they transmit the communicated information.</rdfs:comment>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="http://w3id.org/infocomm#senderOf">
+		<rdfs:label xml:lang="en">senderOf</rdfs:label>
+        <rdfs:domain rdf:resource="#CommunicationParty"/>
+        <rdfs:range rdf:resource="#Information"/>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="http://w3id.org/infocomm#hasRecipient">
 		<rdfs:label xml:lang="en">hasRecipient</rdfs:label>
         <rdfs:domain rdf:resource="#CommunicationEvent"/>
         <rdfs:range rdf:resource="#CommunicationParty"/>
-		<owl:inverseOf rdf:resource="#recipientOf"/>
 		<rdfs:comment>A communication party fulfils the 'recipient' role if they receive the communicated information.</rdfs:comment>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="http://w3id.org/infocomm#recipientOf">
+		<rdfs:label xml:lang="en">recipientOf</rdfs:label>
+        <rdfs:domain rdf:resource="#CommunicationParty"/>
+        <rdfs:range rdf:resource="#Information"/>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="http://w3id.org/infocomm#hasMedium">
